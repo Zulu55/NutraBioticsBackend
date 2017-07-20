@@ -22,7 +22,8 @@
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Email")]
         [DataType(DataType.EmailAddress)]
-        [Index("User_Email_Index", IsUnique = true)]        [MaxLength(100, ErrorMessage = "El campo {0} debe tener máximo {1} caráteres")]
+        [Index("User_Email_Index", IsUnique = true)]
+        [MaxLength(100, ErrorMessage = "El campo {0} debe tener máximo {1} caráteres")]
         public string Email { get; set; }
 
         [Display(Name = "Foto")]

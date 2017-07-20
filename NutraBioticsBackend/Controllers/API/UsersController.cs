@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Web.Http;
-using System.Web.Http.Description;
-using NutraBioticsBackend.Models;
-
-namespace NutraBioticsBackend.Controllers.API
+﻿namespace NutraBioticsBackend.Controllers.API
 {
+    using System.Data;
+    using System.Data.Entity;
+    using System.Data.Entity.Infrastructure;
+    using System.Linq;
+    using System.Net;
+    using System.Threading.Tasks;
+    using System.Web.Http;
+    using System.Web.Http.Description;
+    using NutraBioticsBackend.Models;
+
     [RoutePrefix("api/Users")]
     public class UsersController : ApiController
     {

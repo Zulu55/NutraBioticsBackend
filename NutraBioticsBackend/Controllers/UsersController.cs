@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using NutraBioticsBackend.Models;
-
-namespace NutraBioticsBackend.Controllers
+﻿namespace NutraBioticsBackend.Controllers
 {
+    using System.Data.Entity;
+    using System.Threading.Tasks;
+    using System.Net;
+    using System.Web.Mvc;
+    using NutraBioticsBackend.Models;
+    using NutraBioticsBackend.Helpers;
+    using System;
+
     public class UsersController : Controller
     {
         private DataContext db = new DataContext();
@@ -43,20 +40,43 @@ namespace NutraBioticsBackend.Controllers
         }
 
         // POST: Users/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "UserId,FirstName,LastName,Email,Picture,Gender,IMEI,Password,PasswordConfirm")] User user)
+        public async Task<ActionResult> Create(UserView view)
         {
             if (ModelState.IsValid)
             {
+                var pic = string.Empty;
+                var folder = "~/Content/Users";
+
+                if (view.PictureFile != null)
+                {
+                    pic = FilesHelper.UploadPhoto(view.PictureFile, folder);
+                    pic = string.Format("{0}/{1}", folder, pic);
+                }                var user = ToUser(view);                user.Picture = pic;
+
                 db.Users.Add(user);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(user);
+            return View(view);
+        }
+
+        private User ToUser(UserView view)
+        {
+            return new User
+            {
+                Email = view.Email,
+                FirstName = view.FirstName,
+                Gender = view.Gender,
+                IMEI = view.IMEI,
+                LastName = view.LastName,
+                Password = view.Password,
+                PasswordConfirm = view.PasswordConfirm,
+                Picture = view.Picture,
+                UserId = view.UserId,
+            };
         }
 
         // GET: Users/Edit/5
@@ -66,28 +86,54 @@ namespace NutraBioticsBackend.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = await db.Users.FindAsync(id);
+
+            var user = await db.Users.FindAsync(id);
+
             if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+
+            var view = ToView(user);
+            return View(view);
+        }
+
+        private UserView ToView(User user)
+        {
+            return new UserView
+            {
+                Email = user.Email,
+                FirstName = user.FirstName,
+                Gender = user.Gender,
+                IMEI = user.IMEI,
+                LastName = user.LastName,
+                Password = user.Password,
+                PasswordConfirm = user.PasswordConfirm,
+                Picture = user.Picture,
+                UserId = user.UserId,
+            };
         }
 
         // POST: Users/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "UserId,FirstName,LastName,Email,Picture,Gender,IMEI,Password,PasswordConfirm")] User user)
+        public async Task<ActionResult> Edit(UserView view)
         {
             if (ModelState.IsValid)
             {
+                var pic = view.Picture;
+                var folder = "~/Content/Users";
+
+                if (view.PictureFile != null)
+                {
+                    pic = FilesHelper.UploadPhoto(view.PictureFile, folder);
+                    pic = string.Format("{0}/{1}", folder, pic);
+                }                var user = ToUser(view);                user.Picture = pic;
                 db.Entry(user).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(user);
+            return View(view);
         }
 
         // GET: Users/Delete/5
