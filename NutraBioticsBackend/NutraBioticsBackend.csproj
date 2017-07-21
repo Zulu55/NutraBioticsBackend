@@ -165,8 +165,17 @@
     </Compile>
     <Compile Include="Helpers\FilesHelper.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\CustomerPriceList.cs" />
     <Compile Include="Models\DataContext.cs" />
     <Compile Include="Models\LoginRequest.cs" />
+    <Compile Include="Models\OrderDetail.cs" />
+    <Compile Include="Models\OrderHeader.cs" />
+    <Compile Include="Models\Part.cs" />
+    <Compile Include="Models\PriceList.cs" />
+    <Compile Include="Models\PriceLstPart.cs" />
+    <Compile Include="Models\ShipTo.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

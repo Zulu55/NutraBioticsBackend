@@ -53,7 +53,10 @@
                 {
                     pic = FilesHelper.UploadPhoto(view.PictureFile, folder);
                     pic = string.Format("{0}/{1}", folder, pic);
-                }                var user = ToUser(view);                user.Picture = pic;
+                }
+
+                var user = ToUser(view);
+                user.Picture = pic;
 
                 db.Users.Add(user);
                 await db.SaveChangesAsync();
@@ -128,7 +131,10 @@
                 {
                     pic = FilesHelper.UploadPhoto(view.PictureFile, folder);
                     pic = string.Format("{0}/{1}", folder, pic);
-                }                var user = ToUser(view);                user.Picture = pic;
+                }
+
+                var user = ToUser(view);
+                user.Picture = pic;
                 db.Entry(user).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");

@@ -1,6 +1,7 @@
 ﻿namespace NutraBioticsBackend.Models
 {
     using Newtonsoft.Json;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
@@ -39,6 +40,26 @@
         [MaxLength(20, ErrorMessage = "El campo {0} debe tener máximo {1} caráteres")]
         public string IMEI { get; set; }
 
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
+        [Display(Name = "Pais")]
+        public string Country { get; set; }
+
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
+        [Display(Name = "Departamento")]
+        public string State { get; set; }
+
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
+        [Display(Name = "Ciudad")]
+        public string City { get; set; }
+
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
+        [Display(Name = "Direccion")]
+        public string Address1 { get; set; }
+
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
+        [Display(Name = "Telefono")]
+        public string PhoneNumber { get; set; }
+
         [JsonIgnore]
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Contraseña")]
@@ -51,5 +72,8 @@
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "La contraseña y la confirmción con coincilan")]
         public string PasswordConfirm { get; set; }
+
+        [JsonIgnore]
+        public virtual ICollection<OrderHeader> OrderHeaders { get; set; }
     }
 }
