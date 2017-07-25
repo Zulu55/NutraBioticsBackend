@@ -9,6 +9,8 @@
         [Key]
         public int ShipToId { get; set; }
 
+        public int CustomerId { get; set; }
+
         [Display(Name = "Nombre domicilio")]
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public string ShipToName { get; set; }

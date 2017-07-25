@@ -3,12 +3,11 @@
     using Newtonsoft.Json;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
 
     public class Customer
     {
         [Key]
-        public string CustomerId { get; set; }
+        public int CustomerId { get; set; }
 
         [Display(Name = "Pais")]
         [Required(ErrorMessage = "El campo {0} es obligatorio")]

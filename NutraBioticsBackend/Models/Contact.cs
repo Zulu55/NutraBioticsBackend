@@ -28,7 +28,6 @@
         [DataType(DataType.EmailAddress)]
         [MaxLength(100, ErrorMessage = "El campo {0} debe tener máximo {1} caráteres")]
         public string Email { get; set; }
-        public string EMailAddress { get; set; }
 
         [JsonIgnore]
         public virtual ShipTo ShipTo { get; set; }
