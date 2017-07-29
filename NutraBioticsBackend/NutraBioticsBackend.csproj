@@ -158,7 +158,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\API\ContactsController.cs" />
+    <Compile Include="Controllers\API\CustomerPriceListsController.cs" />
     <Compile Include="Controllers\API\CustomersController.cs" />
+    <Compile Include="Controllers\API\OrderHeadersController.cs" />
+    <Compile Include="Controllers\API\PartsController.cs" />
+    <Compile Include="Controllers\API\PriceListPartsController.cs" />
+    <Compile Include="Controllers\API\PriceListsController.cs" />
     <Compile Include="Controllers\API\ShipToesController.cs" />
     <Compile Include="Controllers\API\UsersController.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
@@ -178,6 +183,7 @@
     <Compile Include="Models\LoginRequest.cs" />
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\OrderHeader.cs" />
+    <Compile Include="Models\OrderHeaderSync.cs" />
     <Compile Include="Models\Part.cs" />
     <Compile Include="Models\PriceList.cs" />
     <Compile Include="Models\PriceLstPart.cs" />

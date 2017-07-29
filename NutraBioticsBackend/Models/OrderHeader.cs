@@ -34,11 +34,9 @@
         public int ContactId { get; set; }
 
         [Display(Name = "CategoriaVenta")]
-        [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public string SalesCategory { get; set; }
 
         [Display(Name = "Observaciones")]
-        [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public string Observations { get; set; }
     
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
